@@ -2,14 +2,14 @@ const express = require('express');
 const app = express();
 const PORT = 6969;
 const userData = require('./MOCK_DATA.json');
-const graphql,
-  {
-    GraphQLObjectType,
-    GraphQLSchema,
-    GraphQLInt,
-    GraphQLString,
-    GraphQLList,
-  } = require('graphql');
+const graphql = require('graphql');
+const {
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLInt,
+  GraphQLString,
+  GraphQLList,
+} = graphql;
 const { graphqlHTTP } = require('express-graphql');
 
 const UserType = new GraphQLObjectType({
@@ -17,7 +17,7 @@ const UserType = new GraphQLObjectType({
   fields: () => ({
     id: { type: GraphQLInt },
     firstName: { type: GraphQLString },
-    lastName: { type: GraphQLString },
+    lastname: { type: GraphQLString },
     email: { type: GraphQLString },
     password: { type: GraphQLString },
   }),
@@ -43,7 +43,7 @@ const Mutation = new GraphQLObjectType({
       type: UserType,
       args: {
         firstName: { type: GraphQLString },
-        lastName: { type: GraphQLString },
+        lastname: { type: GraphQLString },
         email: { type: GraphQLString },
         password: { type: GraphQLString },
       },
@@ -52,7 +52,7 @@ const Mutation = new GraphQLObjectType({
         userData.push({
           id: userData.length + 1,
           firstName: args.firstName,
-          lastName: args.lastName,
+          lastname: args.lastName,
           email: args.email,
           password: args.password,
         });
